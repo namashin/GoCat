@@ -40,8 +40,17 @@ func NewRunAnimal(runningAnimal string, runningAnimalIcons map[string][][]byte) 
 func (m *RunAnimal) Start() {
 	m.tray = systray.AddMenuItem("CPU: "+fmt.Sprintf("%.2f%%", m.currentCPU), "GoCat CPU Usage")
 
+	animalNamesMapping := map[string]string{
+		"white_cat":    "White Cat",
+		"black_cat":    "Black Cat",
+		"white_horse":  "White Horse",
+		"black_horse":  "Black Horse",
+		"white_parrot": "White Parrot",
+		"black_parrot": "Black Parrot",
+	}
+
 	for animal := range m.runningAnimalIcons {
-		menu := systray.AddMenuItem(animal, "Switch to "+animal)
+		menu := systray.AddMenuItem(animalNamesMapping[animal], "Switch to "+animal)
 		m.animalMenuItems[animal] = menu
 
 		go func(animal string, menuItem *systray.MenuItem) {
