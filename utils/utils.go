@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 )
 
-func CountFiles(dirPath string) (int, error) {
+func CountPNGFile(dirPath string) (int, error) {
 	var fileCount int
 
 	files, err := os.ReadDir(dirPath)
@@ -54,7 +54,8 @@ func loadImage(path string) ([]byte, error) {
 	}
 
 	buf := new(bytes.Buffer)
-	if err := png.Encode(buf, img); err != nil {
+	err = png.Encode(buf, img)
+	if err != nil {
 		return nil, err
 	}
 

@@ -4,6 +4,7 @@ go 1.21.4
 
 require (
 	github.com/getlantern/systray v1.2.2
+	github.com/go-ini/ini v1.67.0
 	github.com/shirou/gopsutil v3.21.11+incompatible
 )
 
