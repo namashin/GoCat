@@ -7,7 +7,6 @@ import (
 
 	"github.com/getlantern/systray"
 	"github.com/go-ini/ini"
-	"github.com/shirou/gopsutil/cpu"
 )
 
 const (
@@ -19,10 +18,6 @@ var appContext *RunAnimal
 
 func init() {
 	appContext = NewRunAnimal(Config.RunAnimal, setUpIcons())
-}
-
-func main() {
-	systray.Run(onReady, onExit)
 }
 
 func onReady() {
@@ -143,13 +138,4 @@ func (m *RunAnimal) run() {
 			systray.SetIcon(icon)
 		}
 	}
-}
-
-// getCPUUsage retrieves the current CPU usage percentage.
-func getCPUUsage() float64 {
-	percent, err := cpu.Percent(0, false)
-	if err != nil || len(percent) == 0 {
-		return 0
-	}
-	return percent[0]
 }

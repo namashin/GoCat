@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/shirou/gopsutil/cpu"
 	"log"
 	"os"
 	"path/filepath"
@@ -98,4 +99,13 @@ func loadIcon(path string) ([]byte, error) {
 		return nil, err
 	}
 	return data, nil
+}
+
+// getCPUUsage retrieves the current CPU usage percentage.
+func getCPUUsage() float64 {
+	percent, err := cpu.Percent(0, false)
+	if err != nil || len(percent) == 0 {
+		return 0
+	}
+	return percent[0]
 }
